@@ -8,7 +8,7 @@ build: _clean
 
 run: _clean
 	docker image build -t learning-micronauts .
-	docker container run --rm --detach --name micronauts-application learning-micronauts
+	docker container run --rm --detach -p 8080:8080 --name micronauts-application learning-micronauts
 
 stop:
 	docker container stop micronauts-application
