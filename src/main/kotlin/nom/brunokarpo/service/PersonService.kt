@@ -15,4 +15,8 @@ class PersonService(
         return repository.save(person)
     }
 
+    fun findByIdentifier(identifier: UUID): Person {
+        return repository.findByIdentifier(identifier)!!
+    }
+
 }
