@@ -7,5 +7,6 @@ interface PersonRepository {
 
     fun save(person: Person): Person
     fun findByIdentifier(identifier: UUID): Person?
+    fun update(person: Person): Person
 
 }

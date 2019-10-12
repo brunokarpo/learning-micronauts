@@ -21,4 +21,13 @@ class SimplePersonRepository: PersonRepository {
         }
     }
 
+    override fun update(person: Person): Person {
+        val removed = inMemory.removeIf {
+            it.id == person.id
+        }
+        if (removed) {
+            inMemory.add(person)
+        }
+        return person
+    }
 }

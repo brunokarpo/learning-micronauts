@@ -1,10 +1,7 @@
 package nom.brunokarpo.resource
 
 import io.micronaut.http.HttpResponse
-import io.micronaut.http.annotation.Controller
-import io.micronaut.http.annotation.Get
-import io.micronaut.http.annotation.Post
-import io.micronaut.http.annotation.QueryValue
+import io.micronaut.http.annotation.*
 import nom.brunokarpo.resource.dto.PersonDTO
 import nom.brunokarpo.service.PersonService
 import java.net.URI
@@ -28,4 +25,9 @@ class PersonResource(
         return HttpResponse.ok(PersonDTO(person))
     }
 
+    @Put
+    fun update(personDTO: PersonDTO): HttpResponse<PersonDTO> {
+        val person = service.update(personDTO.toPerson())
+        return HttpResponse.ok(PersonDTO(person))
+    }
 }
