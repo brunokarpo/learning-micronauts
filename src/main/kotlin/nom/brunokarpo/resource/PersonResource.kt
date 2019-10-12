@@ -16,7 +16,7 @@ class PersonResource(
     @Post
     fun create(personDTO: PersonDTO): HttpResponse<PersonDTO> {
         val person = service.create(personDTO.toPerson())
-        return HttpResponse.created(PersonDTO(person), URI("/person/${person.id}"))
+        return HttpResponse.created(PersonDTO(person), URI("/person?id=${person.id}"))
     }
 
     @Get
@@ -29,5 +29,11 @@ class PersonResource(
     fun update(personDTO: PersonDTO): HttpResponse<PersonDTO> {
         val person = service.update(personDTO.toPerson())
         return HttpResponse.ok(PersonDTO(person))
+    }
+
+    @Delete
+    fun delete(@QueryValue("id") id: UUID): HttpResponse<Void> {
+        service.deleteByIdentifier(id)
+        return HttpResponse.noContent()
     }
 }

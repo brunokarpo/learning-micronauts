@@ -30,4 +30,10 @@ class SimplePersonRepository: PersonRepository {
         }
         return person
     }
+
+    override fun delete(id: UUID): Boolean {
+        return inMemory.removeIf {
+            it.id == id
+        }
+    }
 }

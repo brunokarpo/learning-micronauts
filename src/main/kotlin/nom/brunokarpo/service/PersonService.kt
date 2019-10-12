@@ -3,6 +3,7 @@ package nom.brunokarpo.service
 import nom.brunokarpo.model.Person
 import nom.brunokarpo.repository.PersonRepository
 import nom.brunokarpo.service.exceptions.PersonCannotUpdateException
+import nom.brunokarpo.service.exceptions.PersonDeleteIdNotExistsException
 import nom.brunokarpo.service.exceptions.PersonNotFoundException
 import nom.brunokarpo.service.exceptions.PersonUpdateWithoutIdException
 import java.util.*
@@ -28,6 +29,12 @@ class PersonService(
         }
         repository.findByIdentifier(person.id!!) ?: throw PersonCannotUpdateException(person.id!!)
         return repository.update(person)
+    }
+
+    fun deleteByIdentifier(id: UUID) {
+        if (repository.delete(id).not()) {
+            throw PersonDeleteIdNotExistsException(id)
+        }
     }
 
 }
