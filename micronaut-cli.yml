@@ -1,0 +1,5 @@
+profile: service
+defaultPackage: nom.brunokarpo
+---
+testFramework: kotlintest
+sourceLanguage: kotlin
